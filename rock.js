@@ -55,8 +55,8 @@ function renderGame(){
 	var systemIcon = "";
     form.innerHTML = '';
     faceOff.setAttribute('class', 'face-off show');
-    up.textContent = '';
-    sp.textContent = '';
+    // up.textContent = '';
+    // sp.textContent = '';
 
 	if(choice == "Rock"){choiceIcon = uRock};
 	if(choice == "Paper"){choiceIcon = uPaper};
@@ -114,15 +114,12 @@ function renderGame(){
 	}
 
     // RESET VARIABLES
-    choice = '';
-    systemPick = '';
-    Roc = '';
-    Rock = '';
-    Pape = '';
-    Paper = '';
-    Scissor = '';
-    Scissors = '';
-
+	uRock = '';
+    uPaper = '';
+    uScissors = '';
+    sRock = '';
+    sPaper = '';
+    sScissors = '';
 	//END GAME AFTER 10 Rounds
 	// if (gameCount == 10) {
 	// 	weapon.remove();
