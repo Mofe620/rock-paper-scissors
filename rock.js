@@ -13,6 +13,8 @@ rClose.addEventListener('click', ()=> {
 let form = document.querySelector('#form');
 let nInput = document.querySelector('#name-input');
 let register = document.querySelector('#start-btn');
+let countField = document.querySelector("#count");
+let verify = '';
 register.addEventListener('click', ()=> {
     if (nInput.value !== '') {
         var name = nInput.value;
@@ -22,6 +24,8 @@ register.addEventListener('click', ()=> {
     form.textContent = `Welcome, ${name}.
                         You're up against Mofe.
                         See if you can beat him.`
+	verify = true;
+	countField.textContent = 0;
 })
 
 // GAME PLAY
@@ -40,6 +44,8 @@ var systemScore = 0;
 var gameCount = 0;
 
 function renderGame(){
+	if (verify != true) { alert('You need to register first'); throw new Error()}
+
 	var choice = this.event.target.getAttribute('name');
 	var systemPick = Math.floor(Math.random()*3);
 	gameCount += 1;
@@ -51,12 +57,18 @@ function renderGame(){
     var sPaper = Paper.cloneNode(true);
     var sScissors = Scissors.cloneNode(true);
 
+	// New Icons should not trigger render() function
+	uRock.setAttribute('onclick', '');
+	uPaper.setAttribute('onclick', '');
+	uScissors.setAttribute('onclick', '');
+	sRock.setAttribute('onclick', '');
+	sPaper.setAttribute('onclick', '');
+	sScissors.setAttribute('onclick', '');
+
 	var choiceIcon = "";
 	var systemIcon = "";
     form.innerHTML = '';
     faceOff.setAttribute('class', 'face-off show');
-    // up.textContent = '';
-    // sp.textContent = '';
 
 	if(choice == "Rock"){choiceIcon = uRock};
 	if(choice == "Paper"){choiceIcon = uPaper};
@@ -70,11 +82,17 @@ function renderGame(){
     choiceIcon.setAttribute('id', 'createdIcon'); 
     systemIcon.setAttribute('id', 'createdIcon'); 
 
+	// DISPLAY THE NAME OF GAME PLAYED
     up.textContent = choice;
     sp.textContent = options[systemPick];
+
+	// DISPLAY THE ICON
     userArea.appendChild(choiceIcon);
     systemArea.appendChild(systemIcon);
-
+	
+	// Create a Data Attribute to reflect who wins each round
+	choiceIcon.setAttribute('data', '');
+	systemIcon.setAttribute('data', '');
 
 	//ANALYSE USER and SYSTEM CHOICES
 	if (choice == options[systemPick]) {
@@ -83,35 +101,42 @@ function renderGame(){
 	} else 	switch (true) {
 		case (choice == 'Rock' && options[systemPick] == 'Scissors'):
 		userScore += 1;
+		choiceIcon.setAttribute('data', 'win');
 		systemScore += 0;
 		break;
 
 		case (choice == 'Rock' && options[systemPick] == 'Paper'):
 		userScore += 0;
 		systemScore += 1;
+		systemIcon.setAttribute('data', 'win');
 		break;
 
 		case (choice == 'Paper' && options[systemPick] == 'Rock'):
 		userScore += 1;
+		choiceIcon.setAttribute('data', 'win');
 		systemScore += 0;
 		break;
 
 		case (choice == 'Paper' && options[systemPick] == 'Scissors'):
 		userScore += 0;
 		systemScore += 1;
+		systemIcon.setAttribute('data', 'win');
 		break;
 
 		case (choice == 'Scissors' && options[systemPick] == 'Rock'):
 		userScore += 0;
 		systemScore += 1;
+		systemIcon.setAttribute('data', 'win');
 		break;
 
 		case (choice == 'Scissors' && options[systemPick] == 'Paper'):
 		userScore += 1;
+		choiceIcon.setAttribute('data', 'win');
 		systemScore += 0;
 		break;
 
 	}
+	countField.textContent = `${userScore} : ${systemScore}`;
 
     // RESET VARIABLES
 	uRock = '';
@@ -120,6 +145,8 @@ function renderGame(){
     sRock = '';
     sPaper = '';
     sScissors = '';
+
+
 	//END GAME AFTER 10 Rounds
 	// if (gameCount == 10) {
 	// 	weapon.remove();

@@ -86,7 +86,6 @@ header .logo {
     height: auto;
     display: flex;
     justify-content: center;
-    margin-top: 2em;
     overflow: visible;
 }
 .rules-btn {
@@ -204,7 +203,18 @@ header .logo {
     transform: scale(0.7);
     top: 25%;
     left: 25%;
-    transition: all 0.5s ease;
+    animation: grow 0.7s ease;
+}
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.7);
+    }
+}
+#createdIcon[data*='win'] {
+    
 }
 .modal {
     position: absolute;
@@ -242,4 +252,81 @@ header .logo {
 .rules {
     display: flex;
     justify-content: center;
+}
+
+/* MEDIA QUERY */
+@media (max-width:400px) {
+    * {
+        /* outline: 2px solid red; */
+    }
+    body {
+        max-width: 375px;
+        overflow-x: hidden;
+    }
+    .container {
+        width: 350px;
+    }
+    .tri-image {
+        transform: scale(0.5);
+    }
+    .paper-icon {
+        top: 7em;
+        left: 15em;
+        width: 3em;
+        height: 3em;
+        padding: 1em;
+    }
+    .scissors-icon {
+        top:7em;
+        right: 14.5em;
+        width: 3em;
+        height: 3em;
+        padding: 1em;
+    }
+    .rock-icon {
+        top: 15em;
+        right: 9.3em;
+        width: 3em;
+        height: 3em;
+        padding: 1em;
+    }
+    .container > div > img {
+        transform: scale(0.5);
+    }
+    .rules-btn {
+        right: 42%;
+    }
+    .modal {
+        top:18%;
+        width: 20em;
+        min-height: 22em;
+    }
+    .game-area {
+        width: 22em;
+        text-align: center;
+        margin-left: -2em;
+        display: flex;
+        justify-content: space-around;
+    }
+    input {
+        text-align: center;
+        letter-spacing: 4px;
+    }
+    #start-btn {
+        margin-top: 0.5em;
+    }
+    .face-off p {
+        text-align: center;
+        align-self: flex-end;
+    }
+    .face-off span {
+        display: block;
+        margin-left: -2px;
+    }
+    #createdIcon {
+        height: 3em;
+        width: 3em;
+        padding: 2em;
+        margin-left: 0.3em;
+    }
 }
