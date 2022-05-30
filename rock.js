@@ -13,7 +13,6 @@ rClose.addEventListener('click', ()=> {
 let form = document.querySelector('#form');
 let nInput = document.querySelector('#name-input');
 let register = document.querySelector('#start-btn');
-let countField = document.querySelector("#count");
 let verify = '';
 register.addEventListener('click', ()=> {
     if (nInput.value !== '') {
@@ -23,9 +22,8 @@ register.addEventListener('click', ()=> {
     }
     form.textContent = `Welcome, ${name}.
                         You're up against Mofe.
-                        See if you can beat him.`
+                        See if you can beat him in 15 rounds.`
 	verify = true;
-	countField.textContent = 0;
 })
 
 // GAME PLAY
@@ -33,6 +31,9 @@ let gameArea = document.querySelector('.game-area');
 let faceOff = document.querySelector('.face-off');
 let userArea = document.querySelector('.user-pick');
 let systemArea = document.querySelector('.system-pick');
+let userValue = document.querySelector('#userScore');
+let systemValue = document.querySelector('#systemScore');
+let round = document.querySelector('#round');
 let up = document.querySelector('#up');
 let sp = document.querySelector('#sp');
 var Rock = document.querySelector(".rock-icon");
@@ -44,11 +45,15 @@ var systemScore = 0;
 var gameCount = 0;
 
 function renderGame(){
-	if (verify != true) { alert('You need to register first'); throw new Error()}
-
+	if (verify != true) { 
+		//alert('You need to register first'); 
+		throw new Error()
+	}
+	
 	var choice = this.event.target.getAttribute('name');
 	var systemPick = Math.floor(Math.random()*3);
 	gameCount += 1;
+	round.textContent = `Round ${gameCount}`;
 
     var uRock = Rock.cloneNode(true);
     var uPaper = Paper.cloneNode(true);
@@ -70,6 +75,7 @@ function renderGame(){
     form.innerHTML = '';
     faceOff.setAttribute('class', 'face-off show');
 
+
 	if(choice == "Rock"){choiceIcon = uRock};
 	if(choice == "Paper"){choiceIcon = uPaper};
 	if(choice == "Scissors"){choiceIcon = uScissors};
@@ -79,12 +85,20 @@ function renderGame(){
     
     // ENSURE TO STYLE THE CLONE ELEMENTS 
     // they have position:absolute; and may fly all over the place.
-    choiceIcon.setAttribute('id', 'createdIcon'); 
-    systemIcon.setAttribute('id', 'createdIcon'); 
+    choiceIcon.setAttribute('id', 'uCreatedIcon'); 
+    systemIcon.setAttribute('id', 'sCreatedIcon'); 
 
 	// DISPLAY THE NAME OF GAME PLAYED
-    up.textContent = choice;
-    sp.textContent = options[systemPick];
+	var uChoiceTxt = document.createElement("p");
+	var sChoiceTxt = document.createElement("p");
+	uChoiceTxt.textContent = `You played ${choice}`;
+	sChoiceTxt.textContent = `Mofe played ${options[systemPick]}`;
+	if(up.hasChildNodes()) {
+		up.replaceChildren(uChoiceTxt) //Replace appended paragraphs from previous game rounds
+	} 	else up.appendChild(uChoiceTxt);	//for first round
+	if(sp.hasChildNodes()) {
+		sp.replaceChildren(sChoiceTxt) //Replace appended paragraphs from previous game rounds
+	}  else sp.appendChild(sChoiceTxt);	    //for first round
 
 	// DISPLAY THE ICON
     userArea.appendChild(choiceIcon);
@@ -136,7 +150,8 @@ function renderGame(){
 		break;
 
 	}
-	countField.textContent = `${userScore} : ${systemScore}`;
+	userValue.textContent = userScore;
+	systemValue.textContent = systemScore;
 
     // RESET VARIABLES
 	uRock = '';
@@ -146,29 +161,33 @@ function renderGame(){
     sPaper = '';
     sScissors = '';
 
+	//END GAME AFTER 15 Rounds
+	if (gameCount == 15) {
+		//var container = document.querySelector('.container');
+		var messageBox = document.querySelector('.message');
+		var message = document.querySelector('#m-text');
+		faceOff.style.display = 'none';
+		verify = '';
 
-	//END GAME AFTER 10 Rounds
-	// if (gameCount == 10) {
-	// 	weapon.remove();
+		//DISPLAY SCORE
+		if (userScore > systemScore) {
+			userValue.style.color = 'blue';
+			userValue.style.fontWeight = 'bold';
+			var msg = "YOU WIN";
+		}
+		if (systemScore > userScore) {
+			userValue.style.color = 'red';
+			userValue.style.fontWeight = 'bold';
+			var msg = "YOU LOSE";
+		}
+		if (userScore == systemScore){
+			msg = "GAME DRAW";
+		}
 
-	// 	//DISPLAY SCORE
-	// 	var resultRow = resultTable.insertRow();
-	// 	var cell4 = resultRow.insertCell(0);
-	// 	var cell5 = resultRow.insertCell(1);
-	// 	var cell6 = resultRow.insertCell(2);
-	// 	cell4.textContent = "TOTAL";
-	// 	cell5.textContent = userScore;
-	// 	cell6.textContent = systemScore;
+		// DISPLAY MESSAGE
+		messageBox.style.display = 'flex';
+		message.textContent = msg;
 
-	// 	//DELETE SECOND (Serial No 0)
-	// 	resultTable.deleteRow(1);
-
-	// 	//CREATE RESTART LINK(A)
-	// 	var restart = document.createElement("a");
-	//     restart.setAttribute('href', "index.html")
-	//     restart.setAttribute('id', "restart-btn")
-	//     restart.textContent = "PLAY AGAIN";
-	//     document.body.appendChild(restart);
-	// }
+	}
 	
 }

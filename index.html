@@ -16,9 +16,13 @@
         <p>PAPER</p>
         <p>SCISSORS</p>
       </div>
+      <p id="round"></p>
       <div class="score-card">
         <p>SCORE</p>
-        <p id="count">12</p>
+        <p class="score-value">
+          <span id="userScore"></span> -
+          <span id="systemScore"></span>
+        </p>
       </div>
     </header>
 
@@ -29,12 +33,18 @@
       </div>
       <div class="face-off">
         <div class="user-pick">
-          <p>You played <span id="up"></span></p>
+          <p id="up"></p>
         </div>
         <div class="system-pick">
-          <p>Mofe played <span id="sp"></span></p>
+          <p id="sp"></p>
         </div>
       </div>
+    </div>
+    
+    <!-- MESSAGE BOX -->
+    <div class="message">
+      <h1 id="m-text">YOU WIN</h1>
+      <a href="index.html"><button id="restart">PLAY AGAIN</button></a>
     </div>
 
     <div class="container" role="main">
@@ -62,6 +72,9 @@
       </div>
     </div>
 
+    <footer>
+      <a href="https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH/">FrontEnd Mentor Challenge</a> Coded by <a href="https://github.com/Mofe620"> Mofe620</a>
+  </footer>
     <script src="rock.js" async defer></script>
   </body>
 </html>

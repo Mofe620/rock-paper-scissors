@@ -40,6 +40,9 @@ header {
 header .logo {
     transform: scale(0.3);
 }
+#round {
+    align-self: center;
+}
 .score-card {
     background-color: #fff;
     border-radius: 0.7em;
@@ -50,8 +53,8 @@ header .logo {
 .score-card p {
     color: var(--text-score);
 }
-#count {
-    color: var(--header-outline);
+.score-value {
+    color: var(--header-outline) !important;
     font-size: 24px;
 }
 .game-area {
@@ -199,13 +202,33 @@ header .logo {
     height: 150px;
     overflow: visible;
 }
-#createdIcon {
+#up p, #sp p {
+    margin-left: -1px;
+    opacity: 1;
+    animation: grow 0.8s ease;
+    transform: scale(0.7);
+}
+@keyframes grow {
+    0% {
+        transform: scale(0.5);
+    }
+    100% {
+        transform: scale(0.7);
+    }
+}
+#uCreatedIcon {
     transform: scale(0.7);
     top: 25%;
     left: 25%;
-    animation: grow 0.7s ease;
+    animation: shrink 0.7s ease;
 }
-@keyframes grow {
+#sCreatedIcon {
+    transform: scale(0.7);
+    top: 25%;
+    left: 25%;
+    animation: shrink 0.7s ease;
+}
+@keyframes shrink {
     0% {
         transform: scale(1);
     }
@@ -213,10 +236,8 @@ header .logo {
         transform: scale(0.7);
     }
 }
-#createdIcon[data*='win'] {
+#uCreatedIcon[data*='win'], #uCreatedIcon[data*='win'] {
     padding: 2em !important;
-    width: 4em;
-    height: 4em;
 }
 .modal {
     position: absolute;
@@ -254,6 +275,46 @@ header .logo {
 .rules {
     display: flex;
     justify-content: center;
+}
+.message {
+    display: none;
+    flex-direction: column;
+    margin-top: 3em;
+}
+.message a {
+    text-decoration: none;
+}
+.message a:hover {
+    transform: scale(1.07);
+}
+#m-text {
+    font-size: 40px;
+    text-align: center;
+}
+#restart {
+    cursor: pointer;
+    width: 10em;
+    padding: 0.75em 1em;
+    background-color: #fff;
+    border-radius: 0.5em;
+    border: none;
+    color: var(--header-outline);
+    font-weight: var(--bold);
+    font-size: var(--body-fs);
+    transform: scale(1);
+    transition: transform 0.25s ease;
+}
+#restart:hover {
+    color: hsl(214, 47%, 23%);
+    transform: scale(1.07);
+}
+footer {
+    text-align: center;
+    margin-top: 4em;
+    color: #551A8B;
+}
+footer a {
+    text-decoration: none;
 }
 
 /* MEDIA QUERY */
@@ -293,7 +354,8 @@ header .logo {
         transform: scale(0.5);
     }
     .rules-btn {
-        right: 42%;
+        right: 43.5%;
+        bottom: 6em;
     }
     .modal {
         top:18%;
@@ -307,12 +369,18 @@ header .logo {
         display: flex;
         justify-content: space-around;
     }
+    #form {
+        margin-left: 2.5em;
+    }
     input {
         text-align: center;
         letter-spacing: 4px;
     }
     #start-btn {
         margin-top: 0.5em;
+    }
+    .face-off {
+        margin-left: -0.5em;
     }
     .face-off p {
         text-align: center;
@@ -322,10 +390,14 @@ header .logo {
         display: block;
         margin-left: -2px;
     }
-    #createdIcon {
+    #uCreatedIcon, #sCreatedIcon {
         height: 3em;
         width: 3em;
         padding: 2em;
         margin-left: 0.3em;
+    }
+    footer {
+        position: absolute;
+        bottom: 1em;
     }
 }
