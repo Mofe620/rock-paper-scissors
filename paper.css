@@ -30,7 +30,7 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    outline: 2px solid var(--header-outline);
+    border: 2px solid var(--header-outline);
     border-radius: 1em;
     padding: 0.7em;
     width: 20em;
@@ -63,7 +63,7 @@ header .logo {
 }
 #name-input {
     padding: 0.5em 1em;
-    outline: 2px solid hsl(230, 89%, 65%);
+    border: 2px solid hsl(230, 89%, 65%);
     border-radius: 0.5em;
     border: none;
     font-family: inherit !important;
@@ -124,7 +124,7 @@ header .logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: 1em solid hsl(230, 89%, 62%);
+    border: 1em solid hsl(230, 89%, 62%);
     box-shadow: 4px 8px 8px hsl(230, 89%, 65%) inset ;
     transform: scale(1);
     transition: all 0.5s ease;
@@ -143,7 +143,7 @@ header .logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: 1em solid hsl(39, 89%, 49%) ;
+    border: 1em solid hsl(39, 89%, 49%) ;
     box-shadow: 4px 8px 8px hsl(40, 84%, 53%) inset ;
     transform: scale(1);
     transition: all 0.5s ease;
@@ -165,7 +165,7 @@ header .logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: 1em solid hsl(349, 71%, 52%);
+    border: 1em solid hsl(349, 71%, 52%);
     box-shadow: 4px 8px 8px hsl(349, 70%, 56%) inset ;
     transform: scale(1);
     transition: all 0.5s ease;
