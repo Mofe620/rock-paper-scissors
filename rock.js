@@ -103,6 +103,13 @@ function renderGame(){
 	// DISPLAY THE ICON
     userArea.appendChild(choiceIcon);
     systemArea.appendChild(systemIcon);
+	// if(userArea.hasChildNodes()) {
+	// 	userArea.replaceChildren(choiceIcon) 
+	// } 	else userArea.appendChild(choiceIcon);	
+	// if(systemArea.hasChildNodes()) {
+	// 	systemArea.replaceChildren(systemIcon) 
+	// }  else systemArea.appendChild(systemIcon);	    
+
 	
 	// Create a Data Attribute to reflect who wins each round
 	choiceIcon.setAttribute('data', '');

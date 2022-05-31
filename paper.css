@@ -86,7 +86,7 @@ header .logo {
 .container {
     position: relative;
     width: 800px;
-    height: auto;
+    min-height: auto;
     display: flex;
     justify-content: center;
     overflow: visible;
@@ -109,16 +109,16 @@ header .logo {
     z-index: 1;
     margin-top: 4em;
     margin-right: 1.5em;
-    transform: scale(0.7);
+    transform: scale(0.8);
 }
 .paper-icon {
     position: absolute;
-    top:5em;
-    left: 17em;
+    top: 3em;
+    left: 15.5em;
     z-index: 2;
     width: 4em;
     height: 4em;
-    padding: 1em;
+    padding: 3em;
     border-radius: 50%;
     background-color: #fff;
     display: flex;
@@ -132,12 +132,12 @@ header .logo {
 }
 .scissors-icon {
     position: absolute;
-    top:5em;
-    right: 16.5em;
+    top: 3em;
+    right: 14.5em;
     z-index: 2;
     width: 4em;
     height: 4em;
-    padding: 1em;
+    padding: 3em;
     border-radius: 50%;
     background-color: #fff;
     display: flex;
@@ -149,17 +149,14 @@ header .logo {
     transition: all 0.5s ease;
     cursor: pointer;
 }
-/* .rock-case {
-
-} */
 .rock-icon {
     position: absolute;
     top: 16em;
-    right: 22.8em;
+    right: 20.8em;
     z-index: 2;
     width: 4em;
     height: 4em;
-    padding: 1em;
+    padding: 3em;
     border-radius: 50%;
     background-color: #fff;
     display: flex;
@@ -203,7 +200,6 @@ header .logo {
     overflow: visible;
 }
 #up p, #sp p {
-    margin-left: -1px;
     opacity: 1;
     animation: grow 0.8s ease;
     transform: scale(0.7);
@@ -218,14 +214,14 @@ header .logo {
 }
 #uCreatedIcon {
     transform: scale(0.7);
-    top: 25%;
-    left: 25%;
+    top: 1em;
+    left: 0.8em;
     animation: shrink 0.7s ease;
 }
 #sCreatedIcon {
     transform: scale(0.7);
-    top: 25%;
-    left: 25%;
+    top: 1em;
+    left: 0.8em;
     animation: shrink 0.7s ease;
 }
 @keyframes shrink {
@@ -280,6 +276,9 @@ header .logo {
     display: none;
     flex-direction: column;
     margin-top: 3em;
+    width: 14em;
+    justify-content: center;
+    align-items: center;
 }
 .message a {
     text-decoration: none;
@@ -327,35 +326,35 @@ footer a {
         width: 350px;
     }
     .tri-image {
-        transform: scale(0.5);
+        transform: scale(0.7);
     }
     .paper-icon {
-        top: 7em;
-        left: 15em;
+        top: 5em;
+        left: 14.5em;
         width: 3em;
         height: 3em;
-        padding: 1em;
+        padding: 2em;
     }
     .scissors-icon {
-        top:7em;
-        right: 14.5em;
+        top: 5em;
+        right: 13.5em;
         width: 3em;
         height: 3em;
-        padding: 1em;
+        padding: 2em;
     }
     .rock-icon {
         top: 15em;
-        right: 9.3em;
+        right: 7.8em;
         width: 3em;
         height: 3em;
-        padding: 1em;
+        padding: 2em;
     }
     .container > div > img {
         transform: scale(0.5);
     }
     .rules-btn {
         right: 43.5%;
-        bottom: 6em;
+        bottom: 3em;
     }
     .modal {
         top:18%;
