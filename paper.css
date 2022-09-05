@@ -324,6 +324,7 @@ footer {
     .container {
         width: 350px;
         margin: -2em auto 0em;
+        z-index: -1;
     }
     .tri-image {
         transform: scale(0.7);
