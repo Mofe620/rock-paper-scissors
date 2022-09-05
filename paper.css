@@ -14,6 +14,10 @@
     box-sizing: border-box;
     /* overflow: hidden; */
 }
+a, a:hover, a:visited {
+    color: inherit;
+    text-decoration: none;
+}
 body {
     display: flex;
     flex-direction: column;
@@ -25,7 +29,7 @@ body {
     font-weight: var(--bold);
     background-image: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
 }
 header {
     display: flex;
@@ -170,71 +174,68 @@ header .logo {
 }
 :is(.paper-icon, .rock-icon, .scissors-icon):hover {
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 .face-off {
     display: none;
     overflow: visible;
-    margin-left: 1em;
 }
 .face-off.show {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.face-off span {
-    margin-left: 0.5em;
+.face-off .choice-statements {
+    margin-top: -1.5em;
+}
+.face-off .choice-statements p {
+    margin: 1em 0;
+    text-align: center;
+}
+.user-pick, .system-pick {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+    width: 150px;
+    height: 150px;
 }
 .user-pick {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    overflow: visible;
-    width: 150px;
-    height: 150px;
-}
-.system-pick {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    width: 150px;
-    height: 150px;
-    overflow: visible;
+    margin-left: 2em;
 }
 #up p, #sp p {
     opacity: 1;
-    animation: grow 0.8s ease;
-    transform: scale(0.7);
+    animation: grow 0.8s ease-in-out;
+    margin: 0 1em;
+    transform: scale(1);
 }
 @keyframes grow {
     0% {
-        transform: scale(0.5);
+        transform: scale(0);
+        opacity: 0.4;
     }
     100% {
-        transform: scale(0.7);
+        transform: scale(1);
+        opacity: 1;
     }
 }
 #uCreatedIcon {
     transform: scale(0.7);
-    top: 1em;
-    left: 0.8em;
-    animation: shrink 0.7s ease;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 #sCreatedIcon {
     transform: scale(0.7);
-    top: 1em;
-    left: 0.8em;
-    animation: shrink 0.7s ease;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
-@keyframes shrink {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0.7);
-    }
-}
-#uCreatedIcon[data*='win'], #uCreatedIcon[data*='win'] {
-    padding: 2em !important;
-}
+/* [data*='win']{
+    box-shadow: 0px 0px 8px 6px var(--text-score);
+} */
 .modal {
     position: absolute;
     z-index: 10;
@@ -310,10 +311,8 @@ header .logo {
 footer {
     text-align: center;
     margin-top: 4em;
-    color: #551A8B;
-}
-footer a {
-    text-decoration: none;
+    color: var(--text-score);
+    letter-spacing: 1.5px;
 }
 
 /* MEDIA QUERY */
@@ -324,6 +323,7 @@ footer a {
     }
     .container {
         width: 350px;
+        margin: -2em auto 0em;
     }
     .tri-image {
         transform: scale(0.7);
@@ -364,9 +364,20 @@ footer a {
     .game-area {
         width: 22em;
         text-align: center;
+        margin-top: 2em;
         margin-left: -2em;
         display: flex;
         justify-content: space-around;
+    }
+    .face-off {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .user-pick {
+        margin-left: 0em;
+    }
+    #up p, #sp p {
+        margin: 0;
     }
     #form {
         margin-left: 2.5em;
@@ -377,17 +388,6 @@ footer a {
     }
     #start-btn {
         margin-top: 0.5em;
-    }
-    .face-off {
-        margin-left: -0.5em;
-    }
-    .face-off p {
-        text-align: center;
-        align-self: flex-end;
-    }
-    .face-off span {
-        display: block;
-        margin-left: -2px;
     }
     #uCreatedIcon, #sCreatedIcon {
         height: 3em;

@@ -24,6 +24,8 @@ register.addEventListener('click', ()=> {
                         You're up against Mofe.
                         See if you can beat him in 15 rounds.`
 	verify = true;
+	//Reduce size of Icons
+	WeaponCase.style.transform ='scale(0.7)';
 })
 
 // GAME PLAY
@@ -36,6 +38,7 @@ let systemValue = document.querySelector('#systemScore');
 let round = document.querySelector('#round');
 let up = document.querySelector('#up');
 let sp = document.querySelector('#sp');
+var WeaponCase = document.querySelector(".container");
 var Rock = document.querySelector(".rock-icon");
 var Paper = document.querySelector(".paper-icon");
 var Scissors = document.querySelector(".scissors-icon");
@@ -46,10 +49,10 @@ var gameCount = 0;
 
 function renderGame(){
 	if (verify != true) { 
-		//alert('You need to register first'); 
+		alert('You need to register first'); 
 		throw new Error()
 	}
-	
+
 	var choice = this.event.target.getAttribute('name');
 	var systemPick = Math.floor(Math.random()*3);
 	gameCount += 1;
@@ -101,15 +104,14 @@ function renderGame(){
 	}  else sp.appendChild(sChoiceTxt);	    //for first round
 
 	// DISPLAY THE ICON
-    userArea.appendChild(choiceIcon);
-    systemArea.appendChild(systemIcon);
-	// if(userArea.hasChildNodes()) {
-	// 	userArea.replaceChildren(choiceIcon) 
-	// } 	else userArea.appendChild(choiceIcon);	
-	// if(systemArea.hasChildNodes()) {
-	// 	systemArea.replaceChildren(systemIcon) 
-	// }  else systemArea.appendChild(systemIcon);	    
-
+	if(userArea.hasChildNodes()) {
+		userArea.replaceChildren(choiceIcon) 
+	} 	else userArea.appendChild(choiceIcon);	
+	if(systemArea.hasChildNodes()) {
+		systemArea.replaceChildren(systemIcon) 
+	}  else systemArea.appendChild(systemIcon);	  
+	gsap.timeline().to(userArea, {x: '-40', scale: 1})
+	gsap.timeline().to(systemArea, {x: '40', scale: 1})  
 	
 	// Create a Data Attribute to reflect who wins each round
 	choiceIcon.setAttribute('data', '');
@@ -122,37 +124,49 @@ function renderGame(){
 	} else 	switch (true) {
 		case (choice == 'Rock' && options[systemPick] == 'Scissors'):
 		userScore += 1;
-		choiceIcon.setAttribute('data', 'win');
+		//choiceIcon.setAttribute('data', 'win');
+		choiceIcon.style.boxShadow = '0px 0px 8px 6px #ca2442';
+		gsap.timeline().to('#uCreatedIcon', {scale: 1})
 		systemScore += 0;
 		break;
 
 		case (choice == 'Rock' && options[systemPick] == 'Paper'):
 		userScore += 0;
 		systemScore += 1;
-		systemIcon.setAttribute('data', 'win');
+		//systemIcon.setAttribute('data', 'win');
+		systemIcon.style.boxShadow = '0px 0px 8px 6px hsl(229, 64%, 46%)';
+		gsap.timeline().to('#sCreatedIcon', {scale: 1})
 		break;
 
 		case (choice == 'Paper' && options[systemPick] == 'Rock'):
 		userScore += 1;
-		choiceIcon.setAttribute('data', 'win');
+		//choiceIcon.setAttribute('data', 'win');
+		choiceIcon.style.boxShadow = '0px 0px 8px 6px hsl(229, 64%, 46%)';
+		gsap.timeline().to('#uCreatedIcon', {scale: 1})
 		systemScore += 0;
 		break;
 
 		case (choice == 'Paper' && options[systemPick] == 'Scissors'):
 		userScore += 0;
 		systemScore += 1;
-		systemIcon.setAttribute('data', 'win');
+		//systemIcon.setAttribute('data', 'win');
+		systemIcon.style.boxShadow = '0px 0px 8px 6px #cc8500';
+		gsap.timeline().to('#sCreatedIcon', {scale: 1})
 		break;
 
 		case (choice == 'Scissors' && options[systemPick] == 'Rock'):
 		userScore += 0;
 		systemScore += 1;
-		systemIcon.setAttribute('data', 'win');
+		//systemIcon.setAttribute('data', 'win');
+		systemIcon.style.boxShadow = '0px 0px 8px 6px #ca2442';
+		gsap.timeline().to('#sCreatedIcon', {scale: 1})
 		break;
 
 		case (choice == 'Scissors' && options[systemPick] == 'Paper'):
 		userScore += 1;
-		choiceIcon.setAttribute('data', 'win');
+		//choiceIcon.setAttribute('data', 'win');
+		choiceIcon.style.boxShadow = '0px 0px 8px 6px #cc8500';
+		gsap.timeline().to('#uCreatedIcon', {scale: 1})
 		systemScore += 0;
 		break;
 

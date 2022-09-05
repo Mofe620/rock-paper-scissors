@@ -10,4 +10,3 @@ There are multiple places you can share your solution:
 ## ToDo
 - Save user name in local storage and skip reverification
 - Implement a leaderboard with top 5 scores and names, display link after Game Over
-- There's currently a glitch..if you click somewhere around the inset shadow, the icon displayed is a bit smaller and so, off position.
